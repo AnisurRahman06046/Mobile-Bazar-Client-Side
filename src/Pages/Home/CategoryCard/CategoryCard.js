@@ -1,5 +1,6 @@
-import React from "react";
+// import React, { useState } from "react";
 import { Link } from "react-router-dom";
+// import BookNowModal from "../../BookNowModal/BookNowModal";
 const CategoryCard = ({ category }) => {
   const { _id, name } = category;
   console.log(category);
