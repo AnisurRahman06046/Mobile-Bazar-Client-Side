@@ -2,19 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
+  const handleLoginform = (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
       <div className="hero  bg-slate-800">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <h1 className="text-2xl text-center mt-4 ">Log In Now</h1>
-            <div className="card-body">
+            <form onSubmit={handleLoginform} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type=""
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -29,8 +32,8 @@ const LogIn = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <Link href="#" className="label-text-alt link link-hover">
-                    Don;t have an account?{" "}
+                  <Link to="/signup" className="label-text-alt link link-hover">
+                    Don't have an account?
                     <span className="text-blue-500">Register</span>
                   </Link>
                 </label>
@@ -38,7 +41,7 @@ const LogIn = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
