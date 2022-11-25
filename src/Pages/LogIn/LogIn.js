@@ -26,11 +26,11 @@ const LogIn = () => {
         const user = result.user;
         console.log(user);
         navigate(from, { replace: true });
-        // setLoginUserEmail(data.email);
+        setLoginUserEmail(data.email);
       })
       .catch((error) => {
         console.log(error.message);
-        // setLoginError(error.message);
+        setLoginError(error.message);
       });
   };
   return (

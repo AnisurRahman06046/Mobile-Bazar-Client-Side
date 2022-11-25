@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
-const BookNowModal = ({ bookProduct }) => {
+const BookNowModal = ({ bookProduct, setBookProduct }) => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+
   const { name, resalePrice, id } = bookProduct;
   console.log(bookProduct);
   const handleModal = (event) => {
     event.preventDefault();
     const form = event.target;
-    const Username = form.name.value;
+    const Username = form.Username.value;
     const email = form.email.value;
     const name = form.name.value;
     const resalePrice = form.resalePrice.value;
@@ -14,6 +19,7 @@ const BookNowModal = ({ bookProduct }) => {
     const meetingLocation = form.MeetingLocation.value;
     const modalInfo = {
       id: id,
+
       userName: Username,
       email: email,
       name: name,
@@ -21,8 +27,12 @@ const BookNowModal = ({ bookProduct }) => {
       Phone: Phone,
       meetingLocation: meetingLocation,
     };
+
     console.log(modalInfo);
+    toast.success("Successfully Booked");
+    setBookProduct(null);
   };
+
   return (
     <div>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -41,12 +51,14 @@ const BookNowModal = ({ bookProduct }) => {
           >
             <input
               type="text"
+              value={user?.displayName}
               name="Username"
               placeholder="User Name"
               className="input w-full bg-white "
             />
             <input
               type="email"
+              value={user?.email}
               name="email"
               placeholder="Email"
               className="input w-full bg-white "

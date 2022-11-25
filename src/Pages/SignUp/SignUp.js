@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 const SignUp = () => {
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -14,14 +14,23 @@ const SignUp = () => {
 
   const handleRegisterform = (data) => {
     console.log(data);
-    console.log(data.email);
+    console.log(data.userName);
+
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        const userInfo = {
+          displayName: data.userName,
+        };
+        console.log(userInfo);
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((error) => console.error(error));
       })
       .catch((err) => console.error(err));
   };
+
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {

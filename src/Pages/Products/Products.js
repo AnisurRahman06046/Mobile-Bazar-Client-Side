@@ -15,7 +15,12 @@ const Products = () => {
           product={product}
         ></ProductCard>
       ))}
-      {bookProduct && <BookNowModal bookProduct={bookProduct}></BookNowModal>}
+      {bookProduct && (
+        <BookNowModal
+          setBookProduct={setBookProduct}
+          bookProduct={bookProduct}
+        ></BookNowModal>
+      )}
     </div>
   );
 };
