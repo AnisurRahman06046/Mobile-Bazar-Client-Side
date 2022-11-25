@@ -13,6 +13,7 @@ const LogIn = () => {
 
   const handleLoginform = (data) => {
     console.log(data);
+    console.log(data);
     setLoginError("");
     // signIn(data.email, data.password)
     //   .then((result) => {
@@ -27,11 +28,12 @@ const LogIn = () => {
   };
   return (
     <div className="h-[800px] flex justify-center items-center">
-      <div className="w-96 p-7  bg-purple-500">
+      <div className="w-96 p-7 bg-slate-500">
         <h2 className="text-xl text-center">Login</h2>
         <form onSubmit={handleSubmit(handleLoginform)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
+              {" "}
               <span className="label-text">Email</span>
             </label>
             <input
@@ -47,6 +49,7 @@ const LogIn = () => {
           </div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
+              {" "}
               <span className="label-text">Password</span>
             </label>
             <input
@@ -60,15 +63,16 @@ const LogIn = () => {
               })}
               className="input input-bordered w-full max-w-xs"
             />
-            {/* <label className="label">
+            <label className="label">
+              {" "}
               <span className="label-text">Forget Password?</span>
-            </label> */}
+            </label>
             {errors.password && (
               <p className="text-red-600">{errors.password?.message}</p>
             )}
           </div>
           <input
-            className="btn btn-primary w-full mt-4"
+            className="btn btn-primary w-full"
             value="Login"
             type="submit"
           />
@@ -78,10 +82,14 @@ const LogIn = () => {
         </form>
         <p>
           Don't have an account?{" "}
-          <Link className="text-blue-800 font-semibold" to="/signup">
+          <Link className="text-blue-700 font-semibold" to="/signup">
             Register
           </Link>
         </p>
+        <div className="divider">OR</div>
+        <button className="btn btn-outline  text-white w-full">
+          CONTINUE WITH GOOGLE
+        </button>
       </div>
     </div>
   );
