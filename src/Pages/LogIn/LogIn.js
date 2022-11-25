@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const LogIn = () => {
+  const { logIn } = useContext(AuthContext);
+
   const {
     register,
     formState: { errors },
@@ -15,16 +18,16 @@ const LogIn = () => {
     console.log(data);
     console.log(data);
     setLoginError("");
-    // signIn(data.email, data.password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log(user);
-    //     setLoginUserEmail(data.email);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //     setLoginError(error.message);
-    //   });
+    logIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        // setLoginUserEmail(data.email);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        // setLoginError(error.message);
+      });
   };
   return (
     <div className="h-[800px] flex justify-center items-center">
