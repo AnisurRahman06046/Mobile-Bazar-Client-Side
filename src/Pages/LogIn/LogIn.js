@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
@@ -14,6 +14,9 @@ const LogIn = () => {
   const [loginUserEmail, setLoginUserEmail] = useState("");
   const [loginError, setLoginError] = useState("");
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleLoginform = (data) => {
     console.log(data);
     console.log(data);
@@ -22,6 +25,7 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
         // setLoginUserEmail(data.email);
       })
       .catch((error) => {
@@ -66,18 +70,7 @@ const LogIn = () => {
               })}
               className="input input-bordered w-full  max-w-xs"
             />
-            <label className="label">
-              {" "}
-              <span className="label-text ">Account Type</span>
-            </label>
-            <select
-              {...register("type", {})}
-              className="select w-full bg-white max-w-xs"
-            >
-              <option>Select Your Account Type</option>
-              <option>Seller</option>
-              <option>Buyer</option>
-            </select>
+
             <label className="label">
               {" "}
               <span className="label-text">Forget Password?</span>
