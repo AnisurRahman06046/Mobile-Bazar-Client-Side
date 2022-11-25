@@ -31,7 +31,7 @@ const LogIn = () => {
       <div className="w-96 p-7 bg-slate-500">
         <h2 className="text-xl text-center">Login</h2>
         <form onSubmit={handleSubmit(handleLoginform)}>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control  w-full max-w-xs">
             <label className="label">
               {" "}
               <span className="label-text">Email</span>
@@ -41,7 +41,7 @@ const LogIn = () => {
               {...register("email", {
                 required: "Email Address is required",
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full  max-w-xs"
             />
             {errors.email && (
               <p className="text-red-600">{errors.email?.message}</p>
@@ -61,8 +61,20 @@ const LogIn = () => {
                   message: "Password must be 6 characters or longer",
                 },
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full  max-w-xs"
             />
+            <label className="label">
+              {" "}
+              <span className="label-text ">Account Type</span>
+            </label>
+            <select
+              {...register("type", {})}
+              className="select w-full bg-white max-w-xs"
+            >
+              <option>Select Your Account Type</option>
+              <option>Seller</option>
+              <option>Buyer</option>
+            </select>
             <label className="label">
               {" "}
               <span className="label-text">Forget Password?</span>
