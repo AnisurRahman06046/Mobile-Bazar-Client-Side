@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 const SignUp = () => {
-  const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
+  const { createUser, googleSignIn, updateUser, user } =
+    useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -11,6 +12,8 @@ const SignUp = () => {
   } = useForm();
   const [loginUserEmail, setLoginUserEmail] = useState("");
   const [loginError, setLoginError] = useState("");
+
+  //   console.log(user?.displayName);
 
   const handleRegisterform = (data) => {
     console.log(data);
@@ -33,6 +36,8 @@ const SignUp = () => {
       })
       .catch((err) => console.error(err));
   };
+
+  //   function to save registered users data
   const saveRegisteredUser = (name, email, role) => {
     const registeredUser = { name, email, role };
     fetch("http://localhost:5000/users", {
@@ -51,7 +56,9 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        console.log(user.displayName, user.email);
+        const role = "Buyer";
+        saveRegisteredUser(user.displayName, user.email, role);
       })
       .catch((error) => console.error(error));
   };
