@@ -29,7 +29,21 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
     };
 
     console.log(modalInfo);
-    toast.success("Successfully Booked");
+    fetch("http://localhost:5000/bookeditems", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(modalInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully Booked");
+        }
+        console.log(data);
+      });
+
     setBookProduct(null);
   };
 

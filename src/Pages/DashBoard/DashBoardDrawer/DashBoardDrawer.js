@@ -1,10 +1,15 @@
-import React from "react";
+// import React, { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+// import { useQuery } from "@tanstack/react-query";
 
 const DashBoardDrawer = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div>
-      <div className="drawer drawer-mobile">
+      <div className="drawer drawer-mobile ">
         <input
           id="drawer-dashboard"
           type="checkbox"
@@ -19,12 +24,14 @@ const DashBoardDrawer = () => {
             <li>
               <Link to="/dashboard/myorders">My Orders</Link>
             </li>
+
             <li>
               <Link to="/dashboard/addproduct">Add a product</Link>
             </li>
             <li>
               <Link to="/dashboard/myproduct">My Product</Link>
             </li>
+
             <li>
               <Link to="/dashboard/allsellers">All Sellers</Link>
             </li>

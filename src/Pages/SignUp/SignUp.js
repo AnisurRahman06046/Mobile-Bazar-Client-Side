@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+
 const SignUp = () => {
   const { createUser, googleSignIn, updateUser, user } =
     useContext(AuthContext);
@@ -10,8 +11,7 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [loginUserEmail, setLoginUserEmail] = useState("");
-  const [loginError, setLoginError] = useState("");
+  const [signUpError, setSignUPError] = useState("");
 
   //   console.log(user?.displayName);
 
@@ -49,9 +49,22 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        registeredUserToken(email);
         console.log(data);
       });
   };
+
+  //   jwt token for registered user
+  const registeredUserToken = (email) => {
+    fetch(`http://localhost:5000/JWT?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+        }
+      });
+  };
+
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
@@ -139,7 +152,7 @@ const SignUp = () => {
             type="submit"
           />
           <div>
-            {loginError && <p className="text-red-600">{loginError}</p>}
+            {signUpError && <p className="text-red-600">{signUpError}</p>}
           </div>
         </form>
         <p>
