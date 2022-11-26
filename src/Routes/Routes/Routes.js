@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import DashBoard from "../../Pages/DashBoard/DashBoard";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LogIn/LogIn";
@@ -28,5 +30,14 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/products/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
+    children: [{ path: "/dashboard", element: <DashBoard></DashBoard> }],
   },
 ]);
