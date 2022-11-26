@@ -3,6 +3,7 @@ import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
 import Blog from "../../Pages/Blog/Blog";
 import DashBoard from "../../Pages/DashBoard/DashBoard";
+import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LogIn/LogIn";
@@ -38,6 +39,9 @@ export const router = createBrowserRouter([
         <DashBoardLayout></DashBoardLayout>
       </PrivateRoute>
     ),
-    children: [{ path: "/dashboard", element: <DashBoard></DashBoard> }],
+    children: [
+      { path: "/dashboard", element: <DashBoard></DashBoard> },
+      { path: "/dashboard/myorders", element: <MyOrders></MyOrders> },
+    ],
   },
 ]);
