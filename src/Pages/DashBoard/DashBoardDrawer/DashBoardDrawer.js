@@ -20,16 +20,16 @@ const DashBoardDrawer = () => {
               <Link to="/dashboard/myorders">My Orders</Link>
             </li>
             <li>
-              <Link>Add a product</Link>
+              <Link to="/dashboard/addproduct">Add a product</Link>
             </li>
             <li>
-              <Link>My Product</Link>
+              <Link to="/dashboard/myproduct">My Product</Link>
             </li>
             <li>
-              <Link>All Sellers</Link>
+              <Link to="/dashboard/allsellers">All Sellers</Link>
             </li>
             <li>
-              <Link>All Buyers</Link>
+              <Link to="/dashboard/allbuyers">All Buyers</Link>
             </li>
           </ul>
         </div>

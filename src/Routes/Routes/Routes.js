@@ -2,8 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import AddProduct from "../../Pages/DashBoard/AddProduct/AddProduct";
+import AllBuyers from "../../Pages/DashBoard/AllBuyers/AllBuyers";
+import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import DashBoard from "../../Pages/DashBoard/DashBoard";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
+import MyProducts from "../../Pages/DashBoard/MyProducts/MyProducts";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LogIn/LogIn";
@@ -42,6 +46,10 @@ export const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <DashBoard></DashBoard> },
       { path: "/dashboard/myorders", element: <MyOrders></MyOrders> },
+      { path: "/dashboard/addproduct", element: <AddProduct></AddProduct> },
+      { path: "/dashboard/myproduct", element: <MyProducts></MyProducts> },
+      { path: "/dashboard/allsellers", element: <AllSellers></AllSellers> },
+      { path: "/dashboard/allbuyers", element: <AllBuyers></AllBuyers> },
     ],
   },
 ]);
