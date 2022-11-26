@@ -12,7 +12,10 @@ const Banner = () => {
               10% discount for New Seller
             </h2>
 
-            <Link className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">
+            <Link
+              to="/signup"
+              className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400"
+            >
               Register
             </Link>
           </div>

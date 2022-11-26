@@ -15,6 +15,7 @@ const SignUp = () => {
   const handleRegisterform = (data) => {
     console.log(data);
     console.log(data.userName);
+    console.log(data.type);
 
     createUser(data.email, data.password)
       .then((result) => {
@@ -25,12 +26,27 @@ const SignUp = () => {
         };
         console.log(userInfo);
         updateUser(userInfo)
-          .then(() => {})
+          .then(() => {
+            saveRegisteredUser(data.userName, data.email, data.type);
+          })
           .catch((error) => console.error(error));
       })
       .catch((err) => console.error(err));
   };
-
+  const saveRegisteredUser = (name, email, role) => {
+    const registeredUser = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(registeredUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
