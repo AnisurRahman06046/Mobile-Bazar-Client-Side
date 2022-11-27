@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { createUser, googleSignIn, updateUser, user } =
@@ -12,7 +13,12 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
   const [signUpError, setSignUPError] = useState("");
-
+  const navigate = useNavigate();
+  const [registeredUserEmail, setRegisteredUserEmail] = useState("");
+  const [token] = useToken(registeredUserEmail);
+  if (token) {
+    navigate("/");
+  }
   //   console.log(user?.displayName);
 
   const handleRegisterform = (data) => {
@@ -28,6 +34,8 @@ const SignUp = () => {
           displayName: data.userName,
         };
         console.log(userInfo);
+
+        // update user info
         updateUser(userInfo)
           .then(() => {
             saveRegisteredUser(data.userName, data.email, data.type);
@@ -49,21 +57,22 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        registeredUserToken(email);
+        // registeredUserToken(email);
+        setRegisteredUserEmail(email);
         console.log(data);
       });
   };
 
   //   jwt token for registered user
-  const registeredUserToken = (email) => {
-    fetch(`http://localhost:5000/JWT?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("accessToken", data.accessToken);
-        }
-      });
-  };
+  //   const registeredUserToken = (email) => {
+  //     fetch(`http://localhost:5000/JWT?email=${email}`)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.accessToken) {
+  //           localStorage.setItem("accessToken", data.accessToken);
+  //         }
+  //       });
+  //   };
 
   const handleGoogleSignIn = () => {
     googleSignIn()

@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const BookNowModal = ({ bookProduct, setBookProduct }) => {
   const { user } = useContext(AuthContext);
   console.log(user);
-
+  const navigate = useNavigate();
   const { name, resalePrice, id } = bookProduct;
   console.log(bookProduct);
   const handleModal = (event) => {
@@ -40,6 +41,7 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Successfully Booked");
+          navigate("/dashboard/myorders");
         }
         console.log(data);
       });
