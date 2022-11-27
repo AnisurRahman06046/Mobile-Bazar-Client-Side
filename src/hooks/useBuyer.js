@@ -9,7 +9,7 @@ const useBuyer = (email) => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          setIsBuyer(data.isSeller);
+          setIsBuyer(data.isBuyer);
           setIsBuyerLoading(false);
         });
     }

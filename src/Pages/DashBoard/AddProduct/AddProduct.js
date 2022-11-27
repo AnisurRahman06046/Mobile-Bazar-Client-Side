@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 const AddProduct = () => {
   const {
@@ -10,6 +11,14 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const navigate = useNavigate();
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/categories");
+      const data = await res.json();
+      return data;
+    },
+  });
   const handleProductData = (data) => {
     console.log(data);
     fetch("http://localhost:5000/addedproducts", {
@@ -21,12 +30,16 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data._id);
         if (data.acknowledged) {
           toast.success("Successfully added");
           navigate("/dashboard/myproduct");
         }
       });
+
+    // const productsData = {
+    //   id: data._id,
+    // };
   };
   return (
     <div>
@@ -39,12 +52,17 @@ const AddProduct = () => {
           <label>
             <span className="label-text text-xl">Name</span>
           </label>
-          <input
+          <select
             {...register("name")}
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
+            className="select select-bordered w-full max-w-xs"
+          >
+            <option disabled>Select Brand Name</option>
+            {categories.map((category) => (
+              <option value={category._id} category={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-control">
           <label>
