@@ -13,6 +13,7 @@ import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LogIn/LogIn";
 import Products from "../../Pages/Products/Products";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 export const router = createBrowserRouter([
   {
@@ -48,8 +49,22 @@ export const router = createBrowserRouter([
       { path: "/dashboard/myorders", element: <MyOrders></MyOrders> },
       { path: "/dashboard/addproduct", element: <AddProduct></AddProduct> },
       { path: "/dashboard/myproduct", element: <MyProducts></MyProducts> },
-      { path: "/dashboard/allsellers", element: <AllSellers></AllSellers> },
-      { path: "/dashboard/allbuyers", element: <AllBuyers></AllBuyers> },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
