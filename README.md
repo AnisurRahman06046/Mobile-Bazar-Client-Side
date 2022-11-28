@@ -6,7 +6,10 @@
 
 #### Github : client-site : https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-AnisurRahman06046
 
-##### Admin Acc : Username- Admin , Password : admin@yahoo.com
+##### Admin Acc :
+
+- adminEmail: \< admin@yahoo.com \>
+- adminPassword: \< Admin@&123456 \>
 
 ###### Features:
 
