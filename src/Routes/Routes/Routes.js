@@ -9,6 +9,7 @@ import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import DashBoard from "../../Pages/DashBoard/DashBoard";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/DashBoard/MyProducts/MyProducts";
+import Payment from "../../Pages/DashBoard/Payment/Payment";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LogIn/LogIn";
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://server-mobilebazar.vercel.app/products/${params.id}`),
       },
     ],
   },
@@ -88,6 +89,16 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      // {
+      //   path: "/dashboard/payment/:id",
+      //   element: (
+      //     <BuyerRoute>
+      //       <Payment></Payment>
+      //     </BuyerRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(`https://server-mobilebazar.vercel.app/bookings/${params.id}`),
+      // },
     ],
   },
 ]);

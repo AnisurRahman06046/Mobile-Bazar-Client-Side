@@ -5,14 +5,16 @@ const AllSellers = () => {
   const { data: allsellers = [], refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users/allsellers");
+      const res = await fetch(
+        "https://server-mobilebazar.vercel.app/users/allsellers"
+      );
       const data = await res.json();
       return data;
     },
   });
   const handleSellerDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/seller/${id}`, {
+    fetch(`https://server-mobilebazar.vercel.app/seller/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -29,7 +31,7 @@ const AllSellers = () => {
   };
   const handleSellerVerify = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/seller/verify/${id}`, {
+    fetch(`https://server-mobilebazar.vercel.app/seller/verify/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

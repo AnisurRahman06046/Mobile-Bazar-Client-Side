@@ -11,17 +11,18 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const navigate = useNavigate();
-  const { data: categories = [] } = useQuery({
-    queryKey: ["categories"],
+  const { data: brandnames = [] } = useQuery({
+    queryKey: ["productbrandname"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "https://server-mobilebazar.vercel.app/productbrandname"
+      );
       const data = await res.json();
       return data;
     },
   });
   const handleProductData = (data) => {
-    console.log(data);
-    fetch("http://localhost:5000/addedproducts", {
+    fetch("https://server-mobilebazar.vercel.app/addedproducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -30,17 +31,14 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data._id);
+        console.log(data);
         if (data.acknowledged) {
           toast.success("Successfully added");
           navigate("/dashboard/myproduct");
         }
       });
-
-    // const productsData = {
-    //   id: data._id,
-    // };
   };
+
   return (
     <div>
       <h1>Add A Product</h1>
@@ -53,13 +51,13 @@ const AddProduct = () => {
             <span className="label-text text-xl">Name</span>
           </label>
           <select
-            {...register("name")}
+            {...register("name ")}
             className="select select-bordered w-full max-w-xs"
           >
             <option disabled>Select Brand Name</option>
-            {categories.map((category) => (
-              <option value={category._id} category={category._id}>
-                {category.name}
+            {brandnames.map((brandname) => (
+              <option value={brandname.name} key={brandname._id}>
+                {brandname.name}
               </option>
             ))}
           </select>
@@ -147,7 +145,7 @@ const AddProduct = () => {
           className="btn lg:btn-wide btn-primary  lg:ml-52 mt-4"
           type="submit"
         >
-          Submit
+          Add A Product
         </button>
       </form>
     </div>

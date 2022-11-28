@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+# Project Name : Mobile-Bazar
+
+## Website type : Buye-sell platform
+
+### Livesite - https://buy-sell-products-15c71.web.app/
+
+#### Github : client-site : https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-AnisurRahman06046
+
+##### Admin Acc : Username- Admin , Password : admin@yahoo.com
+
+###### Features:
+
+- People can buy and sell used mobile phone
+- People can create account as a seller and buyer
+- private route for buyers,sellers and admin
+- jwt verification to secure route
+- Seller can add products
+- Admin can delete buyers or sellers
+- Sellers can delete his/her product
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

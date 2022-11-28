@@ -6,13 +6,15 @@ const MyProducts = () => {
   const { data: myProducts = [], refetch } = useQuery({
     queryKey: ["addedproducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/addedproducts");
+      const res = await fetch(
+        "https://server-mobilebazar.vercel.app/addedproducts"
+      );
       const data = await res.json();
       return data;
     },
   });
   const handleDeleteBySeller = (id) => {
-    fetch(`http://localhost:5000/postedproduct/${id}`, {
+    fetch(`https://server-mobilebazar.vercel.app/postedproduct/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
