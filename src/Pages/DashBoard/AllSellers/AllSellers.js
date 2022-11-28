@@ -27,6 +27,20 @@ const AllSellers = () => {
         refetch();
       });
   };
+  const handleSellerVerify = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/seller/verify/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("verified successfully");
+          refetch();
+        }
+        console.log(data);
+      });
+  };
   return (
     <div>
       <h1 className="text-xl font-semibold">All Sellers</h1>
@@ -38,7 +52,9 @@ const AllSellers = () => {
               {/* <th>Image</th> */}
               <th>Seller Name</th>
               <th>Email</th>
+              <th>Status</th>
               <th>Action</th>
+              <th>Verify</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +65,17 @@ const AllSellers = () => {
 
                   <td>{allseller.name}</td>
                   <td>{allseller.email}</td>
+                  {allseller?.type === "verified" ? (
+                    <>
+                      <td className="text-blue-800 font-bold text-xl">
+                        verified
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>Unverified</td>
+                    </>
+                  )}
                   <td>
                     <button
                       onClick={() => handleSellerDelete(allseller._id)}
@@ -56,6 +83,15 @@ const AllSellers = () => {
                       type="submit"
                     >
                       Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleSellerVerify(allseller._id)}
+                      className="btn btn-primary btn-xs"
+                      type="submit"
+                    >
+                      Verify
                     </button>
                   </td>
                 </tr>
