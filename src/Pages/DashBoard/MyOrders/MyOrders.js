@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const url = `https://server-mobilebazar.vercel.app/bookeditems?email=${user?.email}`;
+  const url = ` https://server-mobilebazar.vercel.app/bookeditems?email=${user?.email}`;
   const { data: bookedItems = [] } = useQuery({
     queryKey: ["bookeditems", user?.email],
     queryFn: async () => {
@@ -26,7 +26,7 @@ const MyOrders = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Image</th>
+              {/* <th>Image</th> */}
               <th>Product Name</th>
               <th>Price</th>
               <th>Payment Status</th>
@@ -37,7 +37,7 @@ const MyOrders = () => {
               <>
                 <tr key={bookedItem._id}>
                   <th>{i + 1}</th>
-                  <td>Cy Ganderton</td>
+                  {/* <td>{bookedItem.img}</td> */}
                   <td>{bookedItem.name}</td>
                   <td>{bookedItem.resalePrice}</td>
                   <td>

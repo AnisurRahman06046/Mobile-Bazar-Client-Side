@@ -7,7 +7,7 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
   const { user } = useContext(AuthContext);
   console.log(user);
   const navigate = useNavigate();
-  const { name, resalePrice, id } = bookProduct;
+  const { name, resalePrice, id, img } = bookProduct;
   console.log(bookProduct);
   const handleModal = (event) => {
     event.preventDefault();
@@ -27,10 +27,11 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
       resalePrice: resalePrice,
       Phone: Phone,
       meetingLocation: meetingLocation,
+      img: img,
     };
 
     console.log(modalInfo);
-    fetch("https://server-mobilebazar.vercel.app/bookeditems", {
+    fetch(" https://server-mobilebazar.vercel.app/bookeditems", {
       method: "POST",
       headers: {
         "content-type": "application/json",

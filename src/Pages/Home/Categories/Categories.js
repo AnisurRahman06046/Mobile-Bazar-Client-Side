@@ -6,7 +6,7 @@ const Categories = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("https://server-mobilebazar.vercel.app/categories").then((res) =>
+      fetch(" https://server-mobilebazar.vercel.app/categories").then((res) =>
         res.json()
       ),
   });

@@ -1,37 +1,54 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
   const {
     register,
-    formState: { errors },
     handleSubmit,
+    formState: { errors },
   } = useForm();
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const { data: brandnames = [] } = useQuery({
     queryKey: ["productbrandname"],
     queryFn: async () => {
       const res = await fetch(
-        "https://server-mobilebazar.vercel.app/productbrandname"
+        " https://server-mobilebazar.vercel.app/productbrandname"
       );
       const data = await res.json();
       return data;
     },
   });
   const handleProductData = (data) => {
-    fetch("https://server-mobilebazar.vercel.app/addedproducts", {
+    const dataInfo = {
+      name: data.name,
+      email: user?.email,
+      id: data.id,
+      resalePrice: data.resalePrice,
+      originalPrice: data.originalPrice,
+      condition: data.condition,
+      phone: data.phone,
+      location: data.location,
+      img: data.img,
+      usedYear: data.purchaseYear,
+      description: data.description,
+      sellerName: user?.displayName,
+    };
+    console.log(dataInfo);
+    fetch(" https://server-mobilebazar.vercel.app/addedproducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(dataInfo),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success("Successfully added");
           navigate("/dashboard/myproduct");
@@ -51,12 +68,12 @@ const AddProduct = () => {
             <span className="label-text text-xl">Name</span>
           </label>
           <select
-            {...register("name ")}
+            {...register("id")}
             className="select select-bordered w-full max-w-xs"
           >
             <option disabled>Select Brand Name</option>
             {brandnames.map((brandname) => (
-              <option value={brandname.name} key={brandname._id}>
+              <option value={brandname._id} key={brandname._id}>
                 {brandname.name}
               </option>
             ))}
@@ -64,10 +81,32 @@ const AddProduct = () => {
         </div>
         <div className="form-control">
           <label>
-            <span className="label-text text-xl">Price</span>
+            <span className="label-text text-xl">Product Name</span>
           </label>
           <input
-            {...register("price")}
+            {...register("name")}
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+          />
+        </div>
+        <div className="form-control">
+          <label>
+            <span className="label-text text-xl">Resale Price</span>
+          </label>
+          <input
+            {...register("resalePrice")}
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+          />
+        </div>
+        <div className="form-control">
+          <label>
+            <span className="label-text text-xl">Original Price</span>
+          </label>
+          <input
+            {...register("originalPrice")}
             type="text"
             placeholder="Type here"
             className="input input-bordered w-full max-w-xs"

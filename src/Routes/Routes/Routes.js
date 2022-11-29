@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://server-mobilebazar.vercel.app/products/${params.id}`),
+          fetch(` https://server-mobilebazar.vercel.app/products/${params.id}`),
       },
     ],
   },
@@ -97,7 +97,7 @@ export const router = createBrowserRouter([
           </BuyerRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://server-mobilebazar.vercel.app/bookings/${params.id}`),
+          fetch(` https://server-mobilebazar.vercel.app/bookings/${params.id}`),
       },
     ],
   },

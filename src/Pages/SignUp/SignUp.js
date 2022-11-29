@@ -48,7 +48,7 @@ const SignUp = () => {
   //   function to save registered users data
   const saveRegisteredUser = (name, email, role) => {
     const registeredUser = { name, email, role };
-    fetch("https://server-mobilebazar.vercel.app/users", {
+    fetch(" https://server-mobilebazar.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -65,7 +65,7 @@ const SignUp = () => {
 
   //   jwt token for registered user
   //   const registeredUserToken = (email) => {
-  //     fetch(`https://server-mobilebazar.vercel.app/JWT?email=${email}`)
+  //     fetch(` https://server-mobilebazar.vercel.app/JWT?email=${email}`)
   //       .then((res) => res.json())
   //       .then((data) => {
   //         if (data.accessToken) {

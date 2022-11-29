@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 // import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+
 const MyProducts = () => {
+  const { user } = useContext(AuthContext);
   const { data: myProducts = [], refetch } = useQuery({
     queryKey: ["addedproducts"],
     queryFn: async () => {
       const res = await fetch(
-        "https://server-mobilebazar.vercel.app/addedproducts"
+        ` https://server-mobilebazar.vercel.app/addedproducts?email=${user?.email}`
       );
       const data = await res.json();
       return data;
     },
   });
   const handleDeleteBySeller = (id) => {
-    fetch(`https://server-mobilebazar.vercel.app/postedproduct/${id}`, {
+    console.log(id);
+    fetch(` https://server-mobilebazar.vercel.app/postedproduct/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -26,6 +30,35 @@ const MyProducts = () => {
         if (data.deletedCount > 0) {
           toast.success("Deleted Successfully");
           refetch();
+        }
+      });
+  };
+
+  const handleAdvertiseItem = (myProduct) => {
+    console.log(myProduct.id);
+    const advertisedItemData = {
+      name: myProduct.name,
+      id: myProduct.id,
+      img: myProduct.img,
+      location: myProduct.location,
+      resalePrice: myProduct.resalePrice,
+      originalPrice: myProduct.originalPrice,
+      usedYear: myProduct.usedYear,
+      sellerName: myProduct.sellerName,
+    };
+    console.log(advertisedItemData);
+    fetch(" https://server-mobilebazar.vercel.app/advertisedproducts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(advertisedItemData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Successfully Advertised");
         }
       });
   };
@@ -41,6 +74,7 @@ const MyProducts = () => {
               <th>Product Name</th>
               <th>Price</th>
               <th>Action</th>
+              <th>Advertise Item</th>
               {/* <th>Payment Status</th> */}
             </tr>
           </thead>
@@ -65,6 +99,15 @@ const MyProducts = () => {
                       type="submit"
                     >
                       Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleAdvertiseItem(myProduct)}
+                      className="btn btn-primary btn-xs"
+                      type="submit"
+                    >
+                      Advertise
                     </button>
                   </td>
                   {/* <td>
