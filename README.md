@@ -1,6 +1,6 @@
 # Project Name : Mobile-Bazar
 
-## Website type : Buye-sell platform
+## Website type : Buy-sell platform for used phone
 
 ### Livesite - https://buy-sell-products-15c71.web.app/
 
