@@ -20,6 +20,11 @@
 - Seller can add products
 - Admin can delete buyers or sellers
 - Sellers can delete his/her product
+- payment system
+
+###### Technologies:
+
+- HTML,CSS,Javascript,ReactJs,NodeJs,ExpressJs,Mongodb,react-stripe,JWT,DaisyUi & MambaUi,dotenv
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

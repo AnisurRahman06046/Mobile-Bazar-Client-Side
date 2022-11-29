@@ -32,6 +32,7 @@ const LogIn = () => {
         console.log(user);
 
         setLoginUserEmail(data.email);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
@@ -99,10 +100,6 @@ const LogIn = () => {
             Register
           </Link>
         </p>
-        <div className="divider">OR</div>
-        <button className="btn btn-outline  text-white w-full">
-          CONTINUE WITH GOOGLE
-        </button>
       </div>
     </div>
   );
