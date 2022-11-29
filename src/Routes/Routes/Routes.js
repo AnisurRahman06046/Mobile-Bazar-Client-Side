@@ -89,16 +89,16 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      // {
-      //   path: "/dashboard/payment/:id",
-      //   element: (
-      //     <BuyerRoute>
-      //       <Payment></Payment>
-      //     </BuyerRoute>
-      //   ),
-      //   loader: ({ params }) =>
-      //     fetch(`https://server-mobilebazar.vercel.app/bookings/${params.id}`),
-      // },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <BuyerRoute>
+            <Payment></Payment>
+          </BuyerRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://server-mobilebazar.vercel.app/bookings/${params.id}`),
+      },
     ],
   },
 ]);
