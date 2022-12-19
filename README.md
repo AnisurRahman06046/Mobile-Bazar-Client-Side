@@ -4,7 +4,7 @@
 
 ### Livesite - https://buy-sell-products-15c71.web.app/
 
-#### Github : client-site : https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-AnisurRahman06046
+#### Github : client-site :https://github.com/AnisurRahman06046/Mobile-Bazar-Client-Side
 
 ##### Admin Acc :
 
