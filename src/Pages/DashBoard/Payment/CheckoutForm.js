@@ -15,7 +15,7 @@ const CheckoutForm = ({ bookedData }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("https://server-mobilebazar.vercel.app/create-payment-intent", {
+    fetch(" https://server-mobilebazar.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const CheckoutForm = ({ bookedData }) => {
         email,
         bookingId: _id,
       };
-      fetch("https://server-mobilebazar.vercel.app/payments", {
+      fetch(" https://server-mobilebazar.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
