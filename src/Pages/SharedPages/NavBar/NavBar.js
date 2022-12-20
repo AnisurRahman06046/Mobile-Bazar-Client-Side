@@ -27,9 +27,14 @@ const NavBar = () => {
           </li>
         </>
       ) : (
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Register</Link>
+          </li>
+        </>
       )}
     </React.Fragment>
   );

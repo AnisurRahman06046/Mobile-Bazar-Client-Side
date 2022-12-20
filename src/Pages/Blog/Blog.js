@@ -12,7 +12,7 @@ const Blog = () => {
             What are the different ways to manage a state in a React
             application?
           </h1>
-          <p className="mt-2 px-20 ">
+          <p className="mt-2 px-20 text-justify">
             Basically,there are four different ways to manage a state in a React
             application.They are :{" "}
             <strong className="text-yellow-500">Local State</strong> ,
@@ -61,7 +61,7 @@ const Blog = () => {
           <h1 className="text-3xl font-semibold">
             How does prototypical inheritance work?
           </h1>
-          <p className="mt-2 px-20 ">
+          <p className="mt-2 px-20 text-justify">
             Every object with its methods and properties contains an internal
             and hidden property known as [[Prototype]]. The Prototypal
             Inheritance is a feature in javascript used to add methods and
@@ -76,7 +76,7 @@ const Blog = () => {
           <h1 className="text-3xl font-semibold">
             What is a unit test? Why should we write unit tests?
           </h1>
-          <p className="mt-2 px-20 ">
+          <p className="mt-2 px-20 text-justify">
             Unit testing is a software development process in which the smallest
             testable parts of an application, called units, are individually and
             independently scrutinized for proper operation. This testing
@@ -110,7 +110,7 @@ const Blog = () => {
         </div>
         <div className="mt-3">
           <h1 className="text-3xl font-semibold">React vs. Angular vs. Vue?</h1>
-          <p className="mt-2 px-20 ">
+          <p className="mt-2 px-20 text-justify">
             There are three frameworks for building web applications that every
             frontend developer has heard about: React, Vue.js, and Angular.
             React is a UI library, Angular is a fully-fledged front-end
