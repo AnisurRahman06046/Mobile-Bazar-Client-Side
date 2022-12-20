@@ -30,8 +30,8 @@ const AllBuyers = () => {
       });
   };
   return (
-    <div>
-      <h1>all buyers</h1>
+    <div className="p-10">
+      <h1 className="text-xl font-semibold mb-5">All buyers</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
